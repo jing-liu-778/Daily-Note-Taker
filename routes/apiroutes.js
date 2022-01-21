@@ -23,7 +23,7 @@ module.exports = function (app) {
 
 
     // API POST Request
-    app.post("/api/notes", (req, response) => {
+    app.post("/api/notes", (req, res) => {
 
         // Extracted new note from request body.  
         const newNote = req.body;

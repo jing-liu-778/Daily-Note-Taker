@@ -20,6 +20,7 @@
   "homepage": "https://github.com/jing-liu-778/Team-Note-Taker#readme",
   "dependencies": {
     "express": "^4.17.2",
+    "fs": "^0.0.1-security",
     "inquirer": "^8.2.0",
     "uuid": "^8.3.2"
   }
