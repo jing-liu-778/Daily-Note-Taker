@@ -12,6 +12,10 @@ html, body {
       margin-bottom: 2rem;
       padding:4rem 2rem;
   }
+  .list-group-item{
+    display: flex;
+    justify-content: space-between;
+  }
   .save-note {
     display: none;
   }

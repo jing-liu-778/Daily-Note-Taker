@@ -1,29 +1,28 @@
 // Dependencies
 const fs = require("fs");
+const router = require('express').Router();
 
 // imported 'uuid' npm package for unique id
 const { v4: uuidv4 } = require('uuid');
-
-// ROUTING
-module.exports = function (app) {
+// const noteData = require('../db/db.json')
 
     // API GET Request
-    app.get("/api/notes", (request, response) => {
+    router.get("/notes", (req, res) => {
         
         console.log("\n\nExecuting GET notes request");
 
-        // Read 'db.json' file 
-        let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+         // Read 'db.json' file 
+         let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
         
-        console.log("\nGET request - Returning notes data: " + JSON.stringify(data));
+         console.log("\nGET request - Returning notes data: " + JSON.stringify(data));
         
         // Send read data to response of 'GET' request
-        response.json(data);
+        res.json(data);
     });
 
 
     // API POST Request
-    app.post("/api/notes", (req, res) => {
+    router.post("/notes", (req, res) => {
 
         // Extracted new note from request body.  
         const newNote = req.body;
@@ -50,7 +49,7 @@ module.exports = function (app) {
 
 
     // API DELETE request
-    app.delete("/api/notes/:id", (req, res) => {
+    router.delete("/notes/:id", (req, res) => {
 
         // Fetched id to delete
         let noteId = req.params.id.toString();
@@ -71,4 +70,5 @@ module.exports = function (app) {
         // Send response
         res.json(newData);
     });
-};
+    
+    module.exports = router;
