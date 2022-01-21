@@ -10,7 +10,7 @@ if (window.location.pathname === '/notes'){
  noteText = document.querySelector('.note-textarea');
  saveNoteBtn = document.querySelector('.save-note');
  newNoteBtn = document.querySelector('.new-note');
-  noteList = document.querySelector('.list-container .list-group')
+  noteList = document.querySelectorAll('.list-container .list-group')
 }
 
 // activeNote is used to keep track of the note in the textarea
@@ -42,7 +42,7 @@ const getNotes =()=>{
 
 // saving a note to the db
 
-const saveNotes = (note)=>{
+const saveNote = (note)=>{
     fetch('/api/notes', {
         method: 'POST',
         headers: {
@@ -61,8 +61,6 @@ const saveNotes = (note)=>{
 
 }
 
-// When the page loads, get all the notes
-getNotes().then((data) => data.forEach((note) => createCard(note)));
 
 
 // delete a note from the db
@@ -80,14 +78,14 @@ const deleteNote = (id)=>{
 const renderActiveNote =()=>{
     hide(saveNoteBtn)
     if (activeNote.id) {
-        noteTitle.setAttribute('readonly', true);
+        noteTile.setAttribute('readonly', true);
         noteText.setAttribute('readonly', true);
-        noteTitle.value = activeNote.title;
+        noteTile.value = activeNote.title;
         noteText.value = activeNote.text;
       } else {
-        noteTitle.removeAttribute('readonly');
+        noteTile.removeAttribute('readonly');
         noteText.removeAttribute('readonly');
-        noteTitle.value = '';
+        noteTile.value = '';
         noteText.value = '';
       }
 };
@@ -96,7 +94,7 @@ const renderActiveNote =()=>{
 
 const handleNoteSave = () => {
     const newNote = {
-      title: noteTitle.value,
+      title: noteTile.value,
       text: noteText.value,
     };
     saveNote(newNote).then(() => {
@@ -138,7 +136,7 @@ const handleNewNoteView = (e) => {
   
   // if  note title or text is empty then hide the save button, else show the save button
   const handleRenderSaveBtn = () => {
-    if (!noteTitle.value.trim() || !noteText.value.trim()) {
+    if (!noteTile.value.trim() || !noteText.value.trim()) {
       hide(saveNoteBtn);
     } else {
       show(saveNoteBtn);
