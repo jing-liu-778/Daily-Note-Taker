@@ -17,7 +17,7 @@
 
   ## Usage 
   This application will allow users to view, add and delete notes. Please view deployed live Heroku [URL](https://obscure-plains-73550.herokuapp.com/notes)<br>
-  <img src="assets/images/Screenshot.png">
+  <img src="images/Screenshot.png">
   
   ## License 
   This project is license under MIT
